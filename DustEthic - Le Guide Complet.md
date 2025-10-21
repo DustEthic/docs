@@ -33,20 +33,22 @@ Dans ce guide, les équivalents € ne servent qu’à l’intelligibilité.
 
 ## 📚 Sommaire
 
-1) Le problème réel aujourd’hui  
-2) La solution proposée par DustEthic  
-3) Flux opérationnel réaliste  
-4) Gas, conversions et options de conception  
-5) Volatilité: principes et stratégies  
-6) Acteurs et responsabilités  
-7) Donateurs - mode d’emploi  
-8) ONG - intégration, compta, conformité  
-9) Relayeurs - exigences minimales norme v0.1  
-10) Références du marché et positionnement  
-11) Roadmap  
-12) Rejoindre le projet  
-13) Licence  
-14) Notes et références
+- [Principe fondamental](#principe-fondamental)
+- [Politique gas v0.1 - par defaut](#-politique-gas-v01---par-defaut)
+- [1) Le probleme reel aujourdhui](#1-le-probleme-reel-aujourdhui)
+- [2) La solution proposee par DustEthic](#2-la-solution-proposee-par-dustethic)
+- [3) Flux operationnel realiste](#3-flux-operationnel-realiste)
+- [4) Gas, conversions et options de conception](#4-gas-conversions-et-options-de-conception)
+- [5) Volatilite - principes et strategies](#5-volatilite-principes-et-strategies)
+- [6) Acteurs et responsabilites](#6-acteurs-et-responsabilites)
+- [7) Donateurs - mode demploi](#7-donateurs---mode-demploi)
+- [8) ONG - integration, compta, conformite](#8-ong---integration-compta-conformite)
+- [9) Relayeurs - exigences minimales norme v01](#9-relayeurs---exigences-minimales-de-la-norme-dustethic-v01)
+- [10) References du marche et positionnement](#10-references-du-marche-et-positionnement)
+- [11) Roadmap](#11-roadmap)
+- [12) Rejoindre le projet](#12-rejoindre-le-projet)
+- [13) Licence](#13-licence)
+- [14) Notes et references](#14-notes-et-references)
 
 ---
 
