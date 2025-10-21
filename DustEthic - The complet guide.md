@@ -1,15 +1,16 @@
-# DUSTETHIC - THE COMPLETE GUIDE [2025-10-21]
+# DUSTETHIC - LE GUIDE COMPLET [2025-10-21]
 
 **Version**: 1.1-draft  
-**Date**: October 2025  
-**Last updated**: [2025-10-21]  
-**Status**: Phase 0 - Scoping document
+**Date**: Octobre 2025  
+**Dernière mise à jour**: [2025-10-21]  
+**Statut**: Phase 0 - Document de cadrage
 
-> ⚠️ Phase 0 notice  
-> - Informational document - not financial or legal advice.  
-> - Some capabilities depend on ERC-4337, paymasters and L2 usage.  
-> - Reference amounts are in crypto units. Fiat equivalents are for readability only.  
-> - Transparency required: fee rate, aggregation windows, supported networks and chosen gas option must be publicly displayed.
+> [!WARNING]
+> Phase 0 - Document de cadrage
+> - Document informatif - pas un conseil financier ou juridique.
+> - Certaines capacités dépendent d’ERC-4337, de paymasters et de l’usage de L2.
+> - Les montants de référence sont en unités crypto. Les équivalents € ne sont qu’indicatifs.
+> - Transparence exigée: commission, fenêtres d’agrégation, réseaux supportés et option gas choisie doivent être affichés publiquement.
 
 ---
 
