@@ -1,4 +1,5 @@
 # DUSTETHIC - LE GUIDE COMPLET [2025-10-21]
+> Version anglaise: [The Complete Guide](./dustethic-guide-v1.1-draft-en.md)
 
 **Version**: 1.1-draft  
 **Date**: Octobre 2025  
