@@ -34,20 +34,22 @@ In this guide, fiat is only used to aid understanding.
 
 ## 📚 Table of contents
 
-1) The real problem today  
-2) DustEthic’s proposed solution  
-3) Realistic operational flow  
-4) Gas, conversions and design options  
-5) Volatility - principles and strategies  
-6) Actors and responsibilities  
-7) Donors - how it works  
-8) NGOs - integration, accounting, compliance  
-9) Relayers - minimum requirements for spec v0.1  
-10) Market references and positioning  
-11) Roadmap  
-12) Join the project  
-13) License  
-14) Notes and references
+- [Core principle](#core-principle)
+- [Gas policy v0.1 - default](#-gas-policy-v01---default)
+- [1) The real problem today](#1-the-real-problem-today)
+- [2) DustEthic’s proposed solution](#2-dustethics-proposed-solution)
+- [3) Realistic operational flow](#3-realistic-operational-flow)
+- [4) Gas, conversions and design options](#4-gas-conversions-and-design-options)
+- [5) Volatility - principles and strategies](#5-volatility---principles-and-strategies)
+- [6) Actors and responsibilities](#6-actors-and-responsibilities)
+- [7) Donors - how it works](#7-donors---how-it-works)
+- [8) NGOs - integration, accounting, compliance](#8-ngos---integration-accounting-compliance)
+- [9) Relayers - minimum requirements for spec v0.1](#9-relayers---minimum-requirements-for-dustethic-v01)
+- [10) Market references and positioning](#10-market-references-and-positioning)
+- [11) Roadmap](#11-roadmap)
+- [12) Join the project](#12-join-the-project)
+- [13) License](#13-license)
+- [14) Notes and references](#14-notes-and-references)
 
 ---
 
