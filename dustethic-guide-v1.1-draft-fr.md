@@ -1,17 +1,18 @@
-# DUSTETHIC - LE GUIDE COMPLET [2025-10-21]
+# DUSTETHIC - LE GUIDE COMPLET [2025-11-06]
 > Version anglaise: [The Complete Guide](./dustethic-guide-v1.1-draft-en.md)
 
 **Version**: 1.1-draft  
-**Date**: Octobre 2025  
-**Dernière mise à jour**: [2025-10-21]  
+**Date**: 2025-11-06  
+**Dernière mise à jour**: [2025-11-06]  
 **Statut**: Phase 0 - Document de cadrage
 
 > [!WARNING]
-> Phase 0 - Document de cadrage
-> - Document informatif - pas un conseil financier ou juridique.
-> - Certaines capacités dépendent d’ERC-4337, de paymasters et de l’usage de L2.
-> - Les montants de référence sont en unités crypto. Les équivalents € ne sont qu’indicatifs.
-> - Transparence exigée: commission, fenêtres d’agrégation, réseaux supportés et option gas choisie doivent être affichés publiquement.
+> Phase 0 - Document de cadrage  
+> - Document informatif - pas un conseil financier ou juridique.  
+> - Certaines capacités dépendent d’ERC-4337, de paymasters et de l’usage de L2.  
+> - Les montants de référence sont en unités crypto. Les équivalents € ne sont qu’indicatifs.  
+> - Transparence exigée: commission (barème dégressif publié), fenêtres d’agrégation, réseaux supportés, option gas choisie et **plafond de campagne** doivent être affichés publiquement.  
+> - **Plafond de campagne**: gas + commission + réserve technique ≤ seuil public (ex. 15%).
 
 ---
 
@@ -21,36 +22,37 @@
 Les montants sont comptés en unités natives de la chaîne utilisée. Exemple: vous donnez 0.0100 ETH, l’ONG reçoit 0.0090 ETH si la commission annoncée est 10%. Cette logique **neutralise la volatilité dans la répartition** entre acteurs. La **valeur en fiat reste fluctuante** tant que chacun n’a pas converti sa part.  
 Dans ce guide, les équivalents € ne servent qu’à l’intelligibilité.
 
-### 🔌 Politique gas v0.1 - par défaut
+### 🔌 Politique gas v0.2 - par défaut
 
 - **L2-first**: opérations priorisées sur des L2 à faibles frais (ex. Optimism, Arbitrum) afin de rendre le coût gas marginal.  
+- **Exécution conditionnelle**: exécuter uniquement quand le **ratio dons/frais** passe au vert.  
 - **Pool gas du relayeur**: le relayeur maintient un pool du jeton natif requis pour le gas (ex. ETH sur L2 EVM). **Aucune conversion n’est faite sur les dons** pour financer la commission.  
 - **Filet de sécurité optionnel**: si le pool gas est insuffisant, une **conversion minimale et documentée on-chain** peut être déclenchée pour acheter le jeton gas, sans modifier la formule de répartition.  
 - **Affichage standard**:  
-  - Formule de calcul: `Net ONG = Montant brut - gas - frais réseau - commission`  
+  - Formule de calcul: `Net ONG = Montant agrégé - gas remboursé - commission relayeur - réserve technique`  
   - Commission affichée **en pourcentage de la crypto donnée** (ex. 7% en ETH si don en ETH)  
-- **Transparence**: l’option gas retenue (pool gas, L2-first, filet de sécurité) est **déclarée publiquement** par chaque relayeur.
+- **Transparence**: l’option gas retenue (pool gas, L2-first, filet de sécurité) et le **plafond de campagne** (ex. 15%) sont **déclarés publiquement** par chaque relayeur.
 
 ---
 
 ## 📚 Sommaire
 
-- [Principe fondamental](#principe-fondamental)
-- [Politique gas v0.1 - par defaut](#-politique-gas-v01---par-defaut)
-- [1) Le probleme reel aujourdhui](#1-le-probleme-reel-aujourdhui)
-- [2) La solution proposee par DustEthic](#2-la-solution-proposee-par-dustethic)
-- [3) Flux operationnel realiste](#3-flux-operationnel-realiste)
-- [4) Gas, conversions et options de conception](#4-gas-conversions-et-options-de-conception)
-- [5) Volatilite - principes et strategies](#5-volatilite-principes-et-strategies)
-- [6) Acteurs et responsabilites](#6-acteurs-et-responsabilites)
-- [7) Donateurs - mode demploi](#7-donateurs---mode-demploi)
-- [8) ONG - integration, compta, conformite](#8-ong---integration-compta-conformite)
-- [9) Relayeurs - exigences minimales norme v01](#9-relayeurs---exigences-minimales-de-la-norme-dustethic-v01)
-- [10) References du marche et positionnement](#10-references-du-marche-et-positionnement)
-- [11) Roadmap](#11-roadmap)
-- [12) Rejoindre le projet](#12-rejoindre-le-projet)
-- [13) Licence](#13-licence)
-- [14) Notes et references](#14-notes-et-references)
+- [Principe fondamental](#principe-fondamental)  
+- [Politique gas v0.2 - par défaut](#-politique-gas-v02---par-défaut)  
+- [1) Le problème réel aujourd’hui](#1-le-problème-réel-aujourdhui)  
+- [2) La solution proposée par DustEthic](#2-la-solution-proposée-par-dustethic)  
+- [3) Flux opérationnel réaliste](#3-flux-opérationnel-réaliste)  
+- [4) Gas, conversions et options de conception](#4-gas-conversions-et-options-de-conception)  
+- [5) Volatilité - principes et stratégies](#5-volatilité---principes-et-stratégies)  
+- [6) Acteurs et responsabilités](#6-acteurs-et-responsabilités)  
+- [7) Donateurs - mode d’emploi](#7-donateurs---mode-demploi)  
+- [8) ONG - intégration, compta, conformité](#8-ong---intégration-compta-conformité)  
+- [9) Relayeurs - exigences minimales de la norme DustEthic v0.1](#9-relayeurs---exigences-minimales-de-la-norme-dustethic-v01)  
+- [10) Références du marché et positionnement](#10-références-du-marché-et-positionnement)  
+- [11) Roadmap](#11-roadmap)  
+- [12) Rejoindre le projet](#12-rejoindre-le-projet)  
+- [13) Licence](#13-licence)  
+- [14) Notes et références](#14-notes-et-références)
 
 ---
 
@@ -67,7 +69,9 @@ Dans ce guide, les équivalents € ne servent qu’à l’intelligibilité.
 **Agrégation + transparence on-chain + répartition en unités crypto**:
 
 - Des **relayeurs** agrègent des micro-dons pendant une période limitée, puis effectuent **un transfert groupé** vers l’ONG.  
-- La part ONG, les frais réseau et la commission sont **calculés en pourcentage de la crypto donnée**, pas en équivalent €.  
+- Répartition **en unités crypto**, avec **gas remboursé en priorité** et **commission dégressive** publiée.  
+- Publication d’un **plafond de campagne**: gas + commission + réserve technique ≤ seuil public (ex. 15%).  
+- La part ONG et la commission sont **exprimées en pourcentage de la crypto donnée**, pas en équivalent €.  
 - La traçabilité se fait via des explorateurs publics (ex. Etherscan pour Ethereum).
 
 **Briques techniques déjà existantes**:
@@ -90,7 +94,7 @@ Dans ce guide, les équivalents € ne servent qu’à l’intelligibilité.
 **Étape 3 - Transfert groupé**  
 - Une transaction unique expédie les fonds vers l’ONG.  
 - Formule standardisée:  
-  - `Net ONG = Montant brut - gas - frais réseau - commission`
+  - `Net ONG = Montant agrégé - gas remboursé - commission relayeur - réserve technique`
 
 **Étape 4 - Répartition publique**  
 - Dons, conversions éventuelles et virement final sont consultables sur l’explorateur de la chaîne.
@@ -100,7 +104,7 @@ Dans ce guide, les équivalents € ne servent qu’à l’intelligibilité.
 ## 4) Gas, conversions et options de conception
 
 **Contraintes physiques**: sur EVM, le gas se paie dans le **jeton natif** de la chaîne utilisée. Exemples: ETH sur Ethereum, Optimism, Arbitrum. **POL** sur Polygon PoS.  
-Pour respecter le principe « pas de conversion pour la commission », DustEthic v0.1 propose des **options explicites** pour financer le gas:
+Pour respecter le principe « pas de conversion pour la commission », DustEthic **v0.2** propose des **options explicites** pour financer le gas:
 
 - **Option A - Pool gas du relayeur**: le relayeur maintient un pool du jeton gas requis. Pas de conversion sur les dons.  
 - **Option B - Conversion minimale documentée**: prélèvement pro-rata en nature pour acheter le jeton gas, journalisé on-chain, sans impacter la formule de répartition au-delà du coût gas.  
@@ -109,7 +113,7 @@ Pour respecter le principe « pas de conversion pour la commission », DustEthic
 
 ---
 
-## 5) Volatilité: principes et stratégies
+## 5) Volatilité - principes et stratégies
 
 **Règle**: la répartition se fait en unités crypto. Les pourcentages restent constants, la valeur en € varie tant que l’ONG et le relayeur n’ont pas converti.
 
@@ -124,7 +128,7 @@ Pour respecter le principe « pas de conversion pour la commission », DustEthic
 ## 6) Acteurs et responsabilités
 
 - **Donateurs**: émettent de petits montants, idéalement via AA pour éviter de payer le gas directement.  
-- **Relayeurs**: opèrent l’agrégation, publient des paramètres publics, respectent la norme v0.1 et tiennent un journal public des opérations sensibles.  
+- **Relayeurs**: opèrent l’agrégation, publient des paramètres publics, respectent la norme v0.1 et tiennent des **journaux signés** des opérations sensibles (avec liens on-chain).  
 - **ONG**: reçoivent directement dans leur wallet, mettent en place une politique de conversion et un minimum de procédures de conformité.
 
 ---
@@ -155,7 +159,8 @@ Pour respecter le principe « pas de conversion pour la commission », DustEthic
 ## 9) Relayeurs - exigences minimales de la norme DustEthic v0.1
 
 **Transparence**  
-- Code open-source. Paramètres publics: commission en %, fenêtres d’agrégation, réseaux supportés, option gas choisie.  
+- Code open-source. Paramètres publics: **commission dégressive** (taux max suggéré 15%), **plafond de campagne**, fenêtres d’agrégation, réseaux supportés, option gas choisie.  
+- Journaux **signés** et liens on-chain; export **CSV**.  
 - Dashboard lisible on-chain.
 
 **Non-custodial**  
@@ -169,11 +174,13 @@ Pour respecter le principe « pas de conversion pour la commission », DustEthic
 
 **Gas et conversions**  
 - Choisir explicitement Option A, B, C ou D et l’afficher publiquement.  
-- Commission toujours en pourcentage de la crypto donnée.  
+- **Exécuter uniquement si ratio dons/frais favorable**; **gas remboursé en priorité**.  
+- Commission toujours en pourcentage de la crypto donnée (barème **dégressif** publié).  
 - Si une conversion de gas est nécessaire, la journaliser on-chain.
 
 **AA et compatibilité**  
-- Support ERC-4337 et paymaster recommandé sur L2. L’EntryPoint publié est la référence d’implémentation.
+- Support ERC-4337 et paymaster recommandé sur L2. L’EntryPoint publié est la référence d’implémentation.  
+- Fallback: meta-transactions **EIP-2771** si 4337/7702 (AA) non supporté.
 
 **Liste blanche d’actifs v1**  
 - Ethereum et L2 EVM: ETH, USDC, USDT.  
@@ -190,7 +197,7 @@ Pour respecter le principe « pas de conversion pour la commission », DustEthic
 - Des plateformes de dons crypto **classiques** existent et ciblent surtout les dons moyens ou élevés avec conversion rapide en fiat.  
   - **Every.org**: conversion instantanée en USD, commission broker 1% + frais réseau.  
   - **The Giving Block**: packages d’abonnement et frais de traitement, détails communiqués commercialement.  
-- **DustEthic** se positionne sur les **micro-dons par agrégation** et la **répartition native en crypto** sur des L2 à faibles frais.
+- **DustEthic** se positionne sur les **micro-dons par agrégation**, la **répartition native en crypto** sur des L2 à faibles frais, avec **plafond de campagne** et **commission dégressive** publiés.
 
 ---
 
