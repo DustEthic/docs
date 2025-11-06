@@ -1,184 +1,191 @@
-# DUSTETHIC - THE COMPLETE GUIDE [2025-10-21]
-> French version: [Le Guide Complet](./dustethic-guide-v1.1-draft-fr.md)
+# DUSTETHIC - THE COMPLETE GUIDE [2025-11-06]
+> Version française: [Le Guide Complet](./dustethic-guide-v1.1-draft-fr.md)
 
 **Version**: 1.1-draft  
-**Date**: October 2025  
-**Last updated**: [2025-10-21]  
+**Date**: 2025-11-06  
+**Last updated**: [2025-11-06]  
 **Status**: Phase 0 - Scoping document
 
 > [!WARNING]
-> Phase 0 - Scoping document
-> - Informational document - not financial or legal advice.
-> - Some capabilities depend on ERC-4337, paymasters and L2 usage.
-> - Reference amounts are in crypto units. Fiat equivalents are indicative only.
-> - Transparency required: fee rate, aggregation windows, supported networks and chosen gas option must be publicly displayed.
+> Phase 0 - Scoping document  
+> - Informational document - not financial or legal advice.  
+> - Some capabilities depend on ERC-4337, paymasters and L2 usage.  
+> - Reference amounts are in crypto units. Fiat equivalents are only indicative.  
+> - Transparency required: commission (published degressive schedule), aggregation windows, supported networks, chosen gas option and **campaign cap** must be publicly displayed.  
+> - **Campaign cap**: gas + commission + technical reserve ≤ public threshold (e.g., 15%).
 
 ---
 
 ## 🎯 Core principle
 
-**Think in crypto, not in fiat.**  
-Amounts are counted in the native units of the chain. Example: you donate 0.0100 ETH, the NGO receives 0.0090 ETH if the publicly declared commission is 10%. This **neutralizes volatility in the split** among actors. **Fiat value still fluctuates** until each party converts.  
-In this guide, fiat is only used to aid understanding.
+**We reason in crypto, not in fiat.**  
+Amounts are counted in native units of the chosen chain. Example: you donate 0.0100 ETH, the NGO receives 0.0090 ETH if the announced commission is 10%. This logic **neutralizes volatility in the split** between participants. The **fiat value remains fluctuating** until each party converts.  
+In this guide, euro equivalents exist only for readability.
 
-### 🔌 Gas policy v0.1 - default
+### 🔌 Gas policy v0.2 - default
 
-- **L2-first**: operate primarily on low-fee L2s (for example Optimism, Arbitrum) so gas is marginal.  
-- **Relayer gas pool**: the relayer maintains a pool of the chain’s gas token (for example ETH on EVM L2). **No donor funds are converted to finance the relayer’s commission.**  
-- **Optional safety net**: if the gas pool runs short, a **minimal, on-chain documented conversion** can be triggered to acquire gas token, without changing the standard split formula.  
+- **L2-first**: operations prioritized on low-fee L2s (e.g., Optimism, Arbitrum) so gas cost is marginal.  
+- **Conditional execution**: execute only when the **donation-to-fee ratio** turns green.  
+- **Relayer gas pool**: the relayer maintains a pool of the native gas token (e.g., ETH on L2 EVM). **No conversion is taken from donations** to fund the commission.  
+- **Optional safety net**: if the gas pool is insufficient, a **minimal, on-chain documented conversion** may buy the gas token, without changing the split formula.  
 - **Standard display**:  
-  - Formula: `NGO net = Gross amount - gas - network fees - commission`  
-  - Commission shown **as a percentage of the donated crypto** (for example 7% in ETH when the donation is in ETH)  
-- **Transparency**: the chosen gas option (gas pool, L2-first, safety net) is **declared publicly** by each relayer.
+  - Calculation formula: `NGO net = Aggregated amount - reimbursed gas - relayer commission - technical reserve`  
+  - Commission is displayed **as a percentage of the donated crypto** (e.g., 7% in ETH if donation is in ETH)  
+- **Transparency**: the chosen gas option (pool, L2-first, safety net) and the **campaign cap** (e.g., 15%) are **publicly declared** by each relayer.
 
 ---
 
 ## 📚 Table of contents
 
-- [Core principle](#core-principle)
-- [Gas policy v0.1 - default](#-gas-policy-v01---default)
-- [1) The real problem today](#1-the-real-problem-today)
-- [2) DustEthic’s proposed solution](#2-dustethics-proposed-solution)
-- [3) Realistic operational flow](#3-realistic-operational-flow)
-- [4) Gas, conversions and design options](#4-gas-conversions-and-design-options)
-- [5) Volatility - principles and strategies](#5-volatility---principles-and-strategies)
-- [6) Actors and responsibilities](#6-actors-and-responsibilities)
-- [7) Donors - how it works](#7-donors---how-it-works)
-- [8) NGOs - integration, accounting, compliance](#8-ngos---integration-accounting-compliance)
-- [9) Relayers - minimum requirements for spec v0.1](#9-relayers---minimum-requirements-for-dustethic-v01)
-- [10) Market references and positioning](#10-market-references-and-positioning)
-- [11) Roadmap](#11-roadmap)
-- [12) Join the project](#12-join-the-project)
-- [13) License](#13-license)
+- [Core principle](#-core-principle)  
+- [Gas policy v0.2 - default](#-gas-policy-v02---default)  
+- [1) The real problem today](#1-the-real-problem-today)  
+- [2) The solution proposed by DustEthic](#2-the-solution-proposed-by-dustethic)  
+- [3) Realistic operational flow](#3-realistic-operational-flow)  
+- [4) Gas, conversions and design options](#4-gas-conversions-and-design-options)  
+- [5) Volatility - principles and strategies](#5-volatility---principles-and-strategies)  
+- [6) Actors and responsibilities](#6-actors-and-responsibilities)  
+- [7) Donors - how to](#7-donors---how-to)  
+- [8) NGOs - integration, accounting, compliance](#8-ngos---integration-accounting-compliance)  
+- [9) Relayers - minimum requirements DustEthic v0.1](#9-relayers---minimum-requirements-dustethic-v01)  
+- [10) Market references and positioning](#10-market-references-and-positioning)  
+- [11) Roadmap](#11-roadmap)  
+- [12) Join the project](#12-join-the-project)  
+- [13) License](#13-license)  
 - [14) Notes and references](#14-notes-and-references)
 
 ---
 
 ## 1) The real problem today
 
-- On Ethereum L1, **gas is paid in ETH** and may exceed small donations. On L2, fees are much lower, but not zero.  
-- Several EVM L2s also use **ETH as gas** (for example Arbitrum, Optimism). Polygon PoS uses **POL** since the MATIC to POL migration.  
-- Result: a single micro-donation is often inefficient on L1, sometimes acceptable on L2, and depends on current network conditions.
+- On Ethereum L1, **gas is paid in ETH** and can exceed small donations. On L2 it is much lower but never zero.  
+- Several EVM L2s also use **ETH as gas token** (e.g., Arbitrum, Optimism). Polygon PoS uses **POL** after the MATIC→POL migration.  
+- Consequence: an isolated micro-donation is often inefficient on L1, sometimes acceptable on L2, and depends on network conditions.
 
 ---
 
-## 2) DustEthic’s proposed solution
+## 2) The solution proposed by DustEthic
 
-**Aggregation + on-chain transparency + splitting in crypto units**:
+**Aggregation + on-chain transparency + split in crypto units**:
 
-- **Relayers** aggregate micro-donations during a limited window, then execute **one grouped transfer** to the NGO.  
-- NGO share, network fees and relayer commission are **calculated as a percentage of the donated crypto**, not a fiat equivalent.  
-- Transparency via public explorers (for example Etherscan on Ethereum).
+- **Relayers** aggregate micro-donations during a limited period, then perform **one grouped transfer** to the NGO.  
+- Split **in crypto units**, with **gas reimbursed first** and **published degressive commission**.  
+- Publication of a **campaign cap**: gas + commission + technical reserve ≤ public threshold (e.g., 15%).  
+- NGO share and commission are **expressed as a percentage of the donated crypto**, not as a fiat equivalent.  
+- Traceability is via public explorers (e.g., Etherscan for Ethereum).
 
-**Existing technical building blocks**:
+**Existing technical bricks**:
 
-- **Account Abstraction ERC-4337** with **paymasters** to sponsor user gas.  
-- **EIP-2612 permit** where available, enabling approval by signature without an on-chain approve transaction.
+- **Account Abstraction ERC-4337** with **paymasters** to sponsor donor-side gas.  
+- **EIP-2612 permit** where available, for signature-based approvals without an on-chain approve transaction.
 
 ---
 
 ## 3) Realistic operational flow
 
 **Step 1 - Donation**  
-- Smart account with AA and paymaster: **gas is sponsored**, donor does not pay directly.  
-- EOA + token with permit: **approval without gas**, then relayed donation.  
-- EOA + token without permit: an **on-chain approval** may be required, depending on the token.
+- Donation via AA smart account with paymaster: **gas sponsored**, donor does not pay directly.  
+- Donation via EOA + token with permit: **gasless approval**, then relayed donation.  
+- Donation via EOA + token without permit: a **paid approval** may be required depending on the token.
 
 **Step 2 - Aggregation**  
-- Donations are collected in an aggregation smart contract. Recommended triggers: amount threshold, max time window, acceptable gas window.
+- Donations collected in an aggregation smart contract. Recommended triggers: amount threshold, max time window, acceptable gas window.
 
 **Step 3 - Grouped transfer**  
-- A single transaction sends funds to the NGO.  
-- Standard formula:  
-  - `NGO net = Gross amount - gas - network fees - commission`
+- A single transaction ships funds to the NGO.  
+- Standardized formula:  
+  - `NGO net = Aggregated amount - reimbursed gas - relayer commission - technical reserve`
 
 **Step 4 - Public reporting**  
-- Donations, any minimal conversions and the final payout are visible on the chain explorer.
+- Donations, any conversions and the final transfer are visible on the chain explorer.
 
 ---
 
 ## 4) Gas, conversions and design options
 
 **Physical constraints**: on EVM, gas is paid in the chain’s **native token**. Examples: ETH on Ethereum, Optimism, Arbitrum. **POL** on Polygon PoS.  
-To uphold the principle “no conversion for the commission”, DustEthic v0.1 proposes explicit options for gas funding:
+To respect the principle “no conversion for the commission,” DustEthic **v0.2** proposes **explicit options** to fund gas:
 
-- **Option A - Relayer gas pool**: relayer keeps the required gas token. No conversion on donor funds.  
-- **Option B - Minimal documented conversion**: pro-rata skim to buy gas token, logged on-chain, and not changing the split beyond the gas cost.  
-- **Option C - L2-first**: operate primarily on low-fee L2s so gas is marginal.  
-- **Option D - Sponsored paymasters**: partners preload the gas pool and are periodically reimbursed.
+- **Option A - Relayer gas pool**: relayer maintains the required gas token pool. No conversion from donations.  
+- **Option B - Minimal documented conversion**: pro-rata in-kind skim to buy the gas token, logged on-chain, without affecting the split formula beyond gas cost.  
+- **Option C - L2-first**: prioritize low-fee L2s so gas is marginal.  
+- **Option D - Sponsors**: paymasters funded by partners who top up gas and get reimbursed periodically.
 
 ---
 
 ## 5) Volatility - principles and strategies
 
-**Rule**: the split is made in crypto units. Percentages stay constant, fiat value varies until the NGO or relayer converts.
+**Rule**: the split is performed in crypto units. Percentages remain constant; the euro value varies until the NGO and relayer convert.
 
-**Stablecoins**: reduce volatility but **do not eliminate risk** (for example depeg, address freeze, issuer risk).
+**Stablecoins**: reduce volatility but **do not eliminate risk** (depeg, address freezes, issuer risk).
 
-**After receiving**:  
-- **NGO**: sell immediately, sell partially, or hold depending on internal policy and risk tolerance.  
-- **Relayer**: sell regularly, hold, or mixed approach.
+**Post-receipt strategies**:  
+- **NGO**: sell immediately, sell partially, or hold depending on internal policy and risk appetite.  
+- **Relayer**: periodic selling, holding, or a mixed approach.
 
 ---
 
 ## 6) Actors and responsibilities
 
 - **Donors**: send small amounts, ideally via AA to avoid paying gas directly.  
-- **Relayers**: operate aggregation, publish public parameters, comply with v0.1 spec and keep a public log for sensitive operations.  
-- **NGOs**: receive directly to their wallet, define a conversion policy and minimal compliance procedures.
+- **Relayers**: operate aggregation, publish public parameters, comply with v0.1 and keep **signed logs** of sensitive operations (with on-chain links).  
+- **NGOs**: receive directly in their wallet, set a conversion policy and basic compliance procedures.
 
 ---
 
-## 7) Donors - how it works
+## 7) Donors - how to
 
-1) Pick a relayer that complies with DustEthic.  
+1) Choose a DustEthic-compliant relayer.  
 2) Connect your wallet.  
-3) Choose the NGO.  
-4) Enter the amount in **crypto units**.  
-5) Sign. Gasless via AA or permit when available. Otherwise a one-time approval may be needed depending on the token.
+3) Select the NGO.  
+4) Enter the amount in **crypto**.  
+5) Sign. Depending on the case, the donation is gasless via AA or permit. Otherwise a paid approval may occur depending on the token.
 
-**Cost for donors**: ideally zero via AA or permit. Otherwise only the initial approval when required by the token. Gas for the final grouped transfer is **mutualized** and deducted before the NGO payout.
+**Cost for the donor**: ideally zero via AA or permit. Otherwise, only the initial approval if required by the token. Final transfer gas is **mutualized** and deducted before the NGO payout.
 
-**Tracking**: each donation and the final payout are visible on the chain explorer.
+**Tracking**: each donation and the final transfer are visible on the chain explorer.
 
 ---
 
 ## 8) NGOs - integration, accounting, compliance
 
-**Recommended wallet**: **Safe** multi-signature for custody.  
-**Fiat conversion**: via a registered exchange, per your internal policy.  
-**Accounting**: record value at receipt time, define conversion policy, track addresses.  
-**Minimal compliance**: even in non-custodial setups, adopt **basic address screening** and a written policy. References: **OFAC** and **FATF R.15 / Travel Rule**. Exact obligations depend on your jurisdiction and status.
+**Recommended wallet**: **Safe** (ex-Gnosis Safe) multi-signature for custody.  
+**Fiat conversion**: via a registered exchange, per your policies.  
+**Accounting**: record value upon receipt, define a conversion policy, track addresses.  
+**Minimal compliance**: even in non-custodial, adopt **address screening** and a written policy. References: **OFAC** and **FATF R.15 / Travel Rule**. Exact obligations depend on your jurisdiction and status.
 
 ---
 
-## 9) Relayers - minimum requirements for DustEthic v0.1
+## 9) Relayers - minimum requirements DustEthic v0.1
 
 **Transparency**  
-- Open-source code. Public parameters: commission rate, aggregation windows, supported networks, chosen gas option.  
+- Open-source code. Public parameters: **degressive commission** (suggested max 15%), **campaign cap**, aggregation windows, supported networks, chosen gas option.  
+- **Signed logs** and on-chain links; **CSV** export.  
 - Readable on-chain dashboard.
 
 **Non-custodial**  
-- Funds held by smart contracts. Technical governance without unilateral withdrawal power.
+- Funds held by smart contracts. Technical governance with no unilateral withdrawal power.
 
 **Technical governance**  
-- Admin roles under **Safe** multi-sig. Timelock for critical changes. Emergency procedures.
+- Admin roles under **Safe multi-sig**. Timelock on critical changes. Emergency procedures.
 
 **Security**  
 - Independent audit before mainnet. Bug bounty after launch.
 
 **Gas and conversions**  
-- Explicitly choose Option A, B, C or D and display it publicly.  
-- Commission always as a percentage of the donated crypto.  
-- If any gas conversion is required, log it on-chain.
+- Explicitly choose Option A, B, C or D and display publicly.  
+- **Execute only if donation-to-fee ratio is favorable**; **gas reimbursed first**.  
+- Commission always as a percentage of donated crypto (published **degressive** schedule).  
+- If a gas conversion is necessary, log it on-chain.
 
 **AA and compatibility**  
-- ERC-4337 and paymaster support recommended on L2. The published EntryPoint is the reference implementation.
+- ERC-4337 and paymaster support recommended on L2. The published EntryPoint is the reference implementation.  
+- Fallback: **EIP-2771** meta-transactions if 4337/7702 (AA) is not supported.
 
-**v1 allowlist of assets**  
-- Ethereum and EVM L2: ETH, USDC, USDT.  
-- Polygon PoS: viable but **gas in POL** - plan logistics accordingly.  
-- By default reject illiquid, taxed, honeypot tokens or those without permit if UX becomes impractical.
+**Asset allowlist v1**  
+- Ethereum and EVM L2s: ETH, USDC, USDT.  
+- Polygon PoS: possible but **gas in POL** - plan the logistics accordingly.  
+- Reject by default illiquid, taxed, honeypot tokens or no-permit tokens if UX becomes impractical.
 
 **Minimal compliance**  
 - Proportionate AML policy, basic screening, logging of refusals.
@@ -187,43 +194,43 @@ To uphold the principle “no conversion for the commission”, DustEthic v0.1 p
 
 ## 10) Market references and positioning
 
-- Crypto donation platforms for **regular size donations** already exist and often convert immediately to fiat.  
-  - **Every.org**: instant USD conversion, broker fee about 1% + network fees.  
-  - **The Giving Block**: commercial packages and processing fees.  
-- **DustEthic** focuses on **micro-donations via aggregation** and **native crypto splits** on low-fee L2s.
+- Traditional crypto donation platforms exist and mainly target medium to large donations with fast fiat conversion.  
+  - **Every.org**: instant USD conversion, 1% broker commission + network fees.  
+  - **The Giving Block**: subscription packages and processing fees, details provided commercially.  
+- **DustEthic** focuses on **micro-donations via aggregation**, **native crypto split** on low-fee L2s, with **published campaign cap** and **degressive commission**.
 
 ---
 
 ## 11) Roadmap
 
 **Phase 0 - Foundations [Q4 2025]**  
-- Spec v0.1  
-- v1 allowlist of assets and networks  
-- Aggregation contracts and paymaster design - testnet  
+- Standard v0.1 specification  
+- Asset and network allowlist v1  
+- Aggregation and paymaster contract design - testnet  
 - Security and governance policy
 
 **Phase 1 - Development [2026]**  
 - Open-source reference implementation  
-- Tests on Sepolia and relevant L2s  
+- Tests on Sepolia and corresponding L2s  
 - Third-party audit  
 - Pilots with 1 relayer and 2 NGOs
 
 **Phase 2 - Launch [2026+]**  
-- Mainnet + 2 L2 deployments  
+- Mainnet deployment + 2 L2s  
 - 3-5 compliant relayers, 10+ NGOs  
 - Community dashboard
 
-**Phase 3 - Expansion [2027+]**  
+**Phase 3 - Extension [2027+]**  
 - More L2s, possibly other EVM ecosystems  
-- Broader governance if traction emerges
+- Broader governance if traction
 
 ---
 
 ## 12) Join the project
 
-- **Developers**: smart accounts, paymasters, aggregators. Start with ERC-4337 and EntryPoint docs.  
+- **Developers**: smart accounts, paymasters, aggregators. See ERC-4337 and EntryPoint references to start.  
 - **NGOs**: test with a **Safe** wallet and an internal conversion policy.  
-- **Relayers**: pilot an L2-first implementation and publish gas and delay metrics.  
+- **Relayers**: run an L2-first implementation and publicly document gas metrics and delays.  
 - **Community**: feedback, translations, content.
 
 Useful links:  
@@ -243,7 +250,7 @@ Useful links:
 
 ## 14) Notes and references
 
-- **ERC-4337 - Account Abstraction**: docs and EntryPoint  
+- **ERC-4337 - Account Abstraction**: Docs and EntryPoint  
   - https://docs.erc4337.io/  
   - https://docs.erc4337.io/smart-accounts/entrypoint-explainer.html  
   - OpenZeppelin AA overview: https://docs.openzeppelin.com/contracts/5.x/account-abstraction
@@ -255,8 +262,8 @@ Useful links:
 - **Gas - definitions and network costs**  
   - Etherscan Gas Tracker: https://etherscan.io/gastracker  
   - Optimism - fee estimates: https://docs.optimism.io/app-developers/transactions/estimates  
-  - Arbitrum - gas in ETH FAQ: https://docs.arbitrum.io/learn-more/faq  
-  - Polygon PoS - MATIC to POL migration: https://polygon.technology/blog/matic-to-pol-migration-is-99-complete-everything-you-need-to-know
+  - Arbitrum - FAQ gas in ETH: https://docs.arbitrum.io/learn-more/faq  
+  - Polygon PoS - MATIC→POL migration: https://polygon.technology/blog/matic-to-pol-migration-is-99-complete-everything-you-need-to-know
 
 - **Stablecoin volatility**  
   - USDC depeg March 2023 (academic analysis): https://www.mdpi.com/2674-1032/3/4/30  
@@ -270,11 +277,11 @@ Useful links:
   - OFAC - Guidance PDF: https://ofac.treasury.gov/media/913571/download?inline=  
   - FATF - Targeted Update R.15 (2024): https://www.fatf-gafi.org/en/publications/Fatfrecommendations/targeted-update-virtual-assets-vasps-2024.html  
   - FATF - Targeted Update (2025, PDF): https://www.fatf-gafi.org/content/dam/fatf-gafi/recommendations/2025-Targeted-Upate-VA-VASPs.pdf.coredownload.pdf  
-  - FATF - Best Practices Travel Rule (2025, PDF): https://www.fatf-gafi.org/content/dam/fatf-gafi/recommendations/Best-Practices-Travel-Rule-Supervision.pdf
+  - Best Practices Travel Rule (2025, PDF): https://www.fatf-gafi.org/content/dam/fatf-gafi/recommendations/Best-Practices-Travel-Rule-Supervision.pdf
 
 - **Existing donation platforms**  
   - Every.org crypto - 1% broker + network: https://www.every.org/crypto and https://support.every.org/hc/en-us/articles/1500007842902-Are-there-any-fees-for-donating-cryptocurrency  
-  - The Giving Block - offers and fee packages: https://thegivingblock.com/ and https://thegivingblock.com/packages/
+  - The Giving Block - pricing via packages: https://thegivingblock.com/ and https://thegivingblock.com/packages/
 
 ---
 
