@@ -1,9 +1,9 @@
-# DUSTETHIC - LE GUIDE COMPLET [2025-11-06]
+# DUSTETHIC - LE GUIDE COMPLET [2025-11-13]
 > Version anglaise: [The Complete Guide](./dustethic-guide-v1.1-draft-en.md)
 
 **Version**: 1.1-draft  
-**Date**: 2025-11-06  
-**Dernière mise à jour**: [2025-11-06]  
+**Date**: 2025-11-13  
+**Dernière mise à jour**: [2025-11-13]  
 **Statut**: Phase 0 - Document de cadrage
 
 > [!WARNING]
@@ -25,7 +25,9 @@ Dans ce guide, les équivalents € ne servent qu’à l’intelligibilité.
 ### 🔌 Politique gas v0.2 - par défaut
 
 - **L2-first**: opérations priorisées sur des L2 à faibles frais (ex. Optimism, Arbitrum) afin de rendre le coût gas marginal.  
-- **Exécution conditionnelle**: exécuter uniquement quand le **ratio dons/frais** passe au vert.  
+- **Exécution conditionnelle**: exécuter uniquement quand le **ratio `Dons agrégés / gas estimé`** atteint un seuil **T** jugé favorable.  
+  - Recommandation DustEthic v0.2: `T ≥ 30` par défaut (≈ 3% de gas max avant commission).  
+  - Exemple avec commission à 7%: `T ≈ 33` garantit ≈ 90% net pour l’ONG.  
 - **Pool gas du relayeur**: le relayeur maintient un pool du jeton natif requis pour le gas (ex. ETH sur L2 EVM). **Aucune conversion n’est faite sur les dons** pour financer la commission.  
 - **Filet de sécurité optionnel**: si le pool gas est insuffisant, une **conversion minimale et documentée on-chain** peut être déclenchée pour acheter le jeton gas, sans modifier la formule de répartition.  
 - **Affichage standard**:  
@@ -37,7 +39,7 @@ Dans ce guide, les équivalents € ne servent qu’à l’intelligibilité.
 
 ## 📚 Sommaire
 
-- [Principe fondamental](#principe-fondamental)  
+- [Principe fondamental](#-principe-fondamental)  
 - [Politique gas v0.2 - par défaut](#-politique-gas-v02---par-défaut)  
 - [1) Le problème réel aujourd’hui](#1-le-problème-réel-aujourdhui)  
 - [2) La solution proposée par DustEthic](#2-la-solution-proposée-par-dustethic)  
@@ -174,7 +176,7 @@ Pour respecter le principe « pas de conversion pour la commission », DustEthic
 
 **Gas et conversions**  
 - Choisir explicitement Option A, B, C ou D et l’afficher publiquement.  
-- **Exécuter uniquement si ratio dons/frais favorable**; **gas remboursé en priorité**.  
+- **Exécuter uniquement si le ratio `Dons agrégés / gas estimé ≥ T`** (T ≥ 30 recommandé); **gas remboursé en priorité**.  
 - Commission toujours en pourcentage de la crypto donnée (barème **dégressif** publié).  
 - Si une conversion de gas est nécessaire, la journaliser on-chain.
 
