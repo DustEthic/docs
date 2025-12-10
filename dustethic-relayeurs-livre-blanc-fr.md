@@ -1,6 +1,34 @@
 # [2025-12-10] - Livre blanc DustEthic - Relayeurs
 
-> Version de travail - brouillon conceptuel. Ne constitue ni un conseil juridique ni un conseil financier. DustEthic est à ce stade une proposition de design, pas un système déployé.
+> ## Avertissement important - statut du document
+
+Ce document mélange deux types d'informations:
+
+1. **Éléments actuels et vérifiables**
+   - Description du Standard DustEthic tel que publié sur les dépôts officiels et le site dustethic.org.
+   - Références techniques publiques sur les wallets, l'account abstraction, ERC 4337, EIP 7702, les paymasters, les relayeurs, etc.
+
+2. **Projections, exemples et hypothèses de conception**
+   - Tous les montants, pourcentages, taux d'adoption, volumes de dons, modèles de commissions, scénarios de gains et roadmaps présentés dans ce document sont des **illustrations de travail**.
+   - Ils ne décrivent pas la performance réelle d'un wallet, d'un relayer, d'une ONG ou du projet DustEthic, et peuvent être revus ou abandonnés.
+
+En conséquence:
+
+- Ce document **ne constitue pas**:
+  - une promesse de gains, de rendement ou de performance future,
+  - une offre de produit financier,
+  - un engagement contractuel de DustEthic ou d'un partenaire.
+
+- Chaque acteur concerné (wallet, relayer, ONG, utilisateur) doit:
+  - effectuer ses propres vérifications techniques, juridiques, fiscales et réglementaires,
+  - adapter ou rejeter les exemples proposés si ceux ci ne sont pas compatibles avec son contexte.
+
+- En cas de contradiction entre ce document et:
+  - le Standard DustEthic publié sur les dépôts officiels,
+  - ou la documentation technique la plus récente,
+  ce sont **les sources officielles les plus récentes** qui prévalent.
+
+Ce document doit être lu comme un **support de réflexion et de conception**, et non comme une description définitive d'un système en production.
 
 ---
 
