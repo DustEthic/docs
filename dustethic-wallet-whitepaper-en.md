@@ -1,5 +1,36 @@
 # [2025-12-10] DustEthic - Wallet White Paper v1.0 (EN)
 
+## Important disclaimer - document status
+
+This document combines two types of information:
+
+1. **Current and verifiable elements**
+   - Description of the DustEthic Standard as published on the official repositories and on dustethic.org.
+   - Public technical references about wallets, account abstraction, ERC 4337, EIP 7702, paymasters, relayers, etc.
+
+2. **Projections, examples and design assumptions**
+   - All amounts, percentages, adoption rates, donation volumes, fee models, revenue scenarios and roadmaps in this document are **working illustrations**.
+   - They do not describe the actual performance of any wallet, relayer, NGO or of the DustEthic project, and they may change or be discarded.
+
+As a result:
+
+- This document is **not**:
+  - a promise of profit, yield or future performance,
+  - a financial product offering,
+  - a contractual commitment from DustEthic or from any partner.
+
+- Each stakeholder (wallet, relayer, NGO, user) must:
+  - perform their own technical, legal, tax and regulatory checks,
+  - adapt or reject the examples if they do not fit their context.
+
+- If there is any conflict between this document and:
+  - the DustEthic Standard published on the official repositories,
+  - or the most recent technical documentation,
+  then **the most recent official sources** prevail.
+
+This document must be read as a **design and discussion support**, not as a final description of a production system.
+
+
 ## 0. Document status
 
 - Version: v1.0 (working draft)
