@@ -1,6 +1,6 @@
 # [2025-12-10] DustEthic - Livre blanc "Wallets" v1.0 (FR)
 
-## Avertissement important - statut du document
+## 0. Avertissement important - statut du document
 
 Ce document mélange deux types d'informations:
 
@@ -29,14 +29,6 @@ En conséquence:
   ce sont **les sources officielles les plus récentes** qui prévalent.
 
 Ce document doit être lu comme un **support de réflexion et de conception**, et non comme une description définitive d'un système en production.
-
-## 0. Statut du document
-
-- Version: v1.0 (brouillon de travail)
-- Portée: rôle des wallets dans le Standard DustEthic
-- Public cible: équipes produit et tech de wallets non custodial, relayeurs, partenaires potentiels
-- Avertissement: ce document décrit une architecture de référence et des exemples chiffrés purement illustratifs.  
-  Il ne constitue ni une offre, ni un engagement contractuel, ni une promesse de gains.
 
 ---
 
