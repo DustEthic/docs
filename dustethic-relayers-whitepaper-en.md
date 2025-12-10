@@ -1,6 +1,6 @@
 # [2025-12-10] - DustEthic Whitepaper - Relayers
 
-## Important disclaimer - document status
+## 0. Important disclaimer - document status
 
 This document combines two types of information:
 
