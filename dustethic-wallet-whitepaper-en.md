@@ -1,6 +1,6 @@
 # [2025-12-10] DustEthic - Wallet White Paper v1.0 (EN)
 
-## Important disclaimer - document status
+## 0. Important disclaimer - document status
 
 This document combines two types of information:
 
@@ -29,15 +29,6 @@ As a result:
   then **the most recent official sources** prevail.
 
 This document must be read as a **design and discussion support**, not as a final description of a production system.
-
-
-## 0. Document status
-
-- Version: v1.0 (working draft)
-- Scope: role of wallets in the DustEthic Standard
-- Target audience: non custodial wallet product and tech teams, relayers, potential partners
-- Disclaimer: this document describes a reference design and purely illustrative examples.  
-  It is not an offer, not a contractual commitment, and not a promise of revenue.
 
 ---
 
