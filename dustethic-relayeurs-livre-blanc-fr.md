@@ -1,6 +1,6 @@
 # [2025-12-10] - Livre blanc DustEthic - Relayeurs
 
-> ## Avertissement important - statut du document
+## 0. Avertissement important - statut du document
 
 Ce document mélange deux types d'informations:
 
