@@ -21,7 +21,7 @@ DustEthic est une spécification ouverte décrivant comment un wallet crypto peu
 
 ## Archive
 
-Les documents décrivant le modèle relayeur précédent, abandonné lors du pivot, sont conservés pour transparence dans [archive/](./archives/). Ils sont obsolètes et ne décrivent plus le standard actuel.
+Les documents décrivant le modèle relayeur précédent, abandonné lors du pivot, sont conservés pour transparence dans [archives/](./archives/). Ils sont obsolètes et ne décrivent plus le standard actuel.
 
 ## Statut et versionnage
 
