@@ -21,7 +21,7 @@ DustEthic est une spécification ouverte décrivant comment un wallet crypto peu
 
 ## Archive
 
-Les documents décrivant le modèle relayeur précédent, abandonné lors du pivot, sont conservés pour transparence dans [archive/](./archive/). Ils sont obsolètes et ne décrivent plus le standard actuel.
+Les documents décrivant le modèle relayeur précédent, abandonné lors du pivot, sont conservés pour transparence dans [archive/](./archives/). Ils sont obsolètes et ne décrivent plus le standard actuel.
 
 ## Statut et versionnage
 
@@ -54,4 +54,4 @@ DustEthic is an open specification describing how a crypto wallet can turn a use
 - **Wallets Whitepaper** (technical spec): 🇫🇷 [fr](./livre-blanc-wallets/livre-blanc-wallets-fr.md) · 🇬🇧 [en](./livre-blanc-wallets/livre-blanc-wallets-en.md)
 - **EIP draft** (in progress): 🇬🇧 [en](./eip/eip-draft-en.md)
 
-Documents describing the previous relayer model are kept, superseded, in [archive/](./archive/). Contributions welcome via Issue or Pull Request.
+Documents describing the previous relayer model are kept, superseded, in [archives/](./archives/). Contributions welcome via Issue or Pull Request.
