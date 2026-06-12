@@ -4,6 +4,22 @@ Toutes les évolutions notables de la documentation sont consignées ici.
 
 > **Note sur le versionnage.** À partir du pivot de juin 2026, le projet repart sur une ligne **v0.x** pour refléter honnêtement son stade réel (Phase 0 - conception). La ligne **v1.1-draft** décrivait un modèle relayeur à commission, abandonné lors du pivot et désormais archivé. La numérotation v0.x ne traduit pas une régression, mais une remise à zéro assumée vers un standard ouvert plus simple.
 
+## [2026-06-12] - v0.2-draft
+
+### Changé
+- Coeur du standard déplacé vers l'agrégation par actif non-custodial, qui devient le mécanisme central.
+- « Zéro commission » remplacé par « Gratuit pour le donateur » : mécène par défaut, sinon commission en nature plafonnée et transparente.
+- Le role d'agrégation, précédemment écarté, est réintégré sous forme sans garde (contrats autonomes sans clé d'administration ou opérateurs transparents), et non plus comme intermédiaire custodial.
+- Portée élargie au cross-chain, au-delà de l'EVM, via les primitives natives de délégation de frais et d'autorisation propres à chaque écosystème.
+
+### Ajouté
+- Section périmètre et limites assumant les cas durs : jetons illiquides, réseaux abandonnés couteux, miette isolée sous le seuil des frais mutualisés.
+- Note réglementaire Phase 0 sur la qualification possible de l'opérateur d'agrégation comme intermédiaire financier.
+
+### Inchangé
+- Statut Phase 0, bénévolat, absence de partenaires.
+- Licences : spécification CC BY 4.0, code MIT, EIP CC0.
+
 ## [2026-06-11] v0.1-draft - Pivot vers le standard ouvert
 
 ### Changé
