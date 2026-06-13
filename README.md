@@ -1,70 +1,73 @@
 # DustEthic
 
-Standard ouvert pour réunir la poussière crypto dispersée et la transformer en dons aux ONG, par agrégation par actif et sans garde.
+**Standard ouvert pour transformer des dusts crypto en dons vérifiables pour des ONG.**
+
+DustEthic est en **Phase 0** : conception, documentation, discussion publique et préparation d'un prototype de référence. Le projet ne collecte pas de fonds, ne vend aucun token, ne promet aucun rendement et ne doit pas être présenté comme un service financier prêt à l'emploi.
 
 ## En une phrase
 
-La poussière crypto, ces soldes minuscules dispersés sur des dizaines de chaines, est individuellement inutilisable mais collectivement énorme. DustEthic est un standard ouvert qui la réunit actif par actif, à travers de nombreux portefeuilles, sans que personne n'en prenne la garde, pour la verser à des ONG.
+Les dusts crypto sont de petits soldes trop faibles pour être utilisés efficacement seuls. DustEthic cherche à définir une règle commune pour les agréger, actif par actif, avec consentement explicite, frais visibles, réception ONG et preuve publique.
 
 ## Le problème
 
-Un portefeuille accumule des miettes : restes d'échanges, airdrops, soldes laissés sur des chaines qu'on n'utilise plus. Seule, chaque miette ne vaut pas le cout de son déplacement. Mais la meme poussière, collectée par actif à travers des millions de portefeuilles, forme des sommes parfaitement utilisables. Aujourd'hui, cet argent dort.
+Un portefeuille crypto accumule souvent des restes : petits soldes après échanges, airdrops inutiles, fonds oubliés sur des réseaux peu utilisés. Isolé, chaque montant peut être inférieur au coût de son déplacement. Agrégé proprement avec d'autres montants du même actif, il peut devenir utile.
 
-## L'idée : agréger par actif, sans garde
+## La proposition
 
-La bonne unité d'agrégation n'est pas le portefeuille, c'est l'actif. On ne balaie pas atomiquement les dizaines de chaines d'un utilisateur, c'est impossible. On collecte chaque actif à travers de nombreux portefeuilles, jusqu'à former une somme convertible et donnable. Et tout cela sans garde : l'utilisateur signe, garde ses clés, et personne ne détient jamais ses fonds.
+DustEthic n'est pas une plateforme fermée. C'est une spécification ouverte que plusieurs acteurs pourraient implémenter : wallets, relayeurs, opérateurs techniques, ONG, auditeurs et contributeurs.
 
-## Comment ca marche
+Le standard doit clarifier :
 
-1. **Détection.** Le portefeuille identifie les soldes sous un seuil configurable.
-2. **Autorisation.** L'utilisateur autorise le don, sans céder ses clés et sans détenir de jeton natif pour le gas.
-3. **Agrégation par actif.** Chaque actif rejoint un dispositif sans garde et s'accumule à travers les portefeuilles.
-4. **Conversion et versement.** Quand un tas atteint un seuil de viabilité, il est converti puis versé à l'ONG. La trace reste publique on-chain.
+1. l'intention de don ;
+2. les actifs et réseaux acceptés ;
+3. l'agrégation par actif ;
+4. la politique de frais ;
+5. la réception par une ONG ;
+6. la preuve publique ;
+7. les limites juridiques, techniques et opérationnelles.
 
-## Principes
+## Principes non négociables
 
-- **Agrégation par actif.** Le coeur du standard. Ce qui, isolé, ne vaut pas son déplacement devient viable une fois additionné.
-- **Sans garde.** L'utilisateur conserve ses clés. Aucun acteur ne détient les fonds.
-- **Cross-chain.** Au-delà de l'EVM, le standard s'appuie sur les primitives natives de chaque écosystème.
-- **Gratuit pour le donateur.** Mécène par défaut, sinon commission en nature plafonnée et transparente.
-- **Standard ouvert.** Une interface, pas un produit. Portefeuilles, opérateurs de tas et ONG l'implémentent librement.
-- **Transparence on-chain.** Tous les flux sont publics et auditables.
+- **Consentement clair** : aucun don sans action explicite de l'utilisateur.
+- **Sans garde opaque** : le modèle cible doit éviter qu'un intermédiaire puisse disposer seul des fonds.
+- **Frais visibles** : gas, commission éventuelle et net ONG doivent être compréhensibles.
+- **Preuve vérifiable** : chaque lot doit produire une trace lisible et techniquement vérifiable.
+- **Pas de token DustEthic** : le projet n'a pas de token et n'en a pas besoin pour exister.
+- **Pas de promesse d'impact** : DustEthic documente une méthode ; l'impact doit être prouvé par les lots exécutés.
 
-## Sans garde, concrètement
+## Statut réel
 
-Sur les grands écosystèmes, la délégation native de frais et l'autorisation ciblée permettent à un tiers de payer le gas et à l'utilisateur d'autoriser un transfert précis, sans partage de clé. L'accumulation se fait dans des contrats autonomes sans clé d'administration, ou via des opérateurs transparents. Personne n'a le pouvoir de disposer des fonds.
+- Phase : **Phase 0 - standard et prototype à construire**.
+- Collecte de fonds : **aucune collecte par DustEthic**.
+- Partenaires : **aucun partenaire wallet ou ONG officiellement validé à ce jour**.
+- Mainnet : **aucun contrat DustEthic audité ou recommandé en production**.
+- Usage : documentation et discussion uniquement.
 
-## Modèle de cout
+## Dépôts officiels
 
-Le don ne coute rien au donateur. Par défaut, un mécène finance les frais. À défaut, une commission en nature, plafonnée par le standard et transparente on-chain, finance les opérations. Aucune commission cachée n'est conforme.
+- Documentation et standard : <https://github.com/DustEthic/docs>
+- Code de référence : <https://github.com/DustEthic/dustethic>
+- Site : <https://dustethic.org>
+- Discord : <https://discord.gg/fVFc26GV>
 
-## Périmètre et limites
+## Documents principaux
 
-L'agrégation par actif rend viable la grande majorité des poussières, meme minuscules, dès lors qu'elles sont nombreuses. Restent honnetement hors d'atteinte : les jetons sans marché, qui ne peuvent etre ni valorisés ni convertis ; les résidus figés sur des réseaux abandonnés ou les frais dépassent la valeur ; une miette isolée inférieure à sa part des frais mutualisés.
-
-## Statut
-
-Phase 0, conception et spécification. Projet bénévole, non lucratif. Aucun partenaire wallet ou ONG, aucun opérateur identifié à ce jour.
-
-## Note réglementaire
-
-Selon la juridiction et la conception du contrat, l'opérateur d'agrégation peut relever de règles applicables aux intermédiaires financiers. Le projet est en Phase 0 ; cette qualification doit etre validée par un conseil juridique selon l'implémentation. DustEthic, en tant que projet, publie une spécification et ne détient aucun fonds.
-
-## Structure du dépot
-
-- `guide/` : guide d'ensemble (FR et EN).
-- `livre-blanc-wallets/` : spécification détaillée cote portefeuille (FR et EN).
-- `eip/` : brouillon d'EIP (licence CC0).
-- `archives/` : versions antérieures conservées pour mémoire.
+- [Standard DustEthic](STANDARD.md)
+- [Feuille de route](ROADMAP.md)
+- [Veille technique](TECHNICAL-WATCH.md)
+- [Communauté et Discord](COMMUNITY.md)
+- [Identité visuelle](BRAND.md)
+- [Sources officielles](SOURCES.md)
+- [Contribuer](CONTRIBUTING.md)
+- [Sécurité](SECURITY.md)
 
 ## Licences
 
-- Spécification et documentation : CC BY 4.0
-- Code de référence : MIT
-- EIP : CC0
+- Documentation et spécification : CC BY 4.0, sauf mention contraire.
+- Code de référence : MIT dans le dépôt `DustEthic/dustethic`.
 
-## Liens
+## Position légale
 
-- Site : https://dustethic.org
-- Discord : https://discord.gg/fVFc26GV
-- GitHub : https://github.com/DustEthic
+DustEthic publie une spécification ouverte. Selon la juridiction et l'architecture retenue, un opérateur d'agrégation, un relayeur ou une ONG peut relever de règles applicables aux paiements, dons, actifs numériques, fiscalité ou intermédiaires financiers. Toute implémentation réelle doit être validée par un conseil juridique qualifié avant lancement.
+
+> Chaque grain compte, seulement si la preuve tient.
