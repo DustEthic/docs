@@ -1,3 +1,10 @@
+# Mise à jour du 03.10.2026 — Wallet Profile v0.1
+
+- Profil wallet FR/EN et règle proposée ZERO-OR-WAIT.
+- Correction ERC-7677 ; veille officielle et statuts vérifiés au 03.10.2026.
+- Trois chemins de qualification, coûts utilisateur/sponsor séparés, exemples fictifs.
+- Roadmap ciblée ; aucun SDK, adaptateur réseau, partenariat ou contrat livré.
+
 # Changelog - DustEthic Docs
 
 Toutes les évolutions notables de la documentation sont consignées ici.
@@ -52,3 +59,4 @@ Les entrées ci-dessous décrivent l'ancien modèle relayeur, conservé pour l'h
 - Gouvernance technique : multi-sig, timelock, procédures d'urgence.
 - Conformité minimale : screening d'adresses, références FATF et OFAC.
 - Ajouts : tables des matières cliquables et callouts.
+

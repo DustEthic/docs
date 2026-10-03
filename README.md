@@ -2,7 +2,7 @@
 
 **Standard ouvert pour transformer des dusts crypto en dons vérifiables pour des ONG.**
 
-Date de reprise : 2026-06-14  
+Date de reprise : 2026-06-14 — mise à jour : 2026-10-03  
 Statut : **Phase 0 - standard à réaligner, pas un service en production**.
 
 ## En une phrase
@@ -36,6 +36,7 @@ Le standard doit clarifier :
 
 ## Principes non négociables
 
+- **ZERO-OR-WAIT** : aucun paiement utilisateur supplémentaire ; absence de financement = attente ou expiration.
 - **Consentement explicite** : aucun don sans action claire de l'utilisateur.
 - **Crypto comme source de vérité** : la répartition se fait dans l'actif donné.
 - **Agrégation conditionnelle** : un lot ne doit partir que s'il est économiquement cohérent.
@@ -51,13 +52,15 @@ Le standard doit clarifier :
 - Collecte de fonds : **aucune collecte par DustEthic**.
 - Partenaires : **aucun partenaire wallet ou ONG officiellement validé à ce stade dans ce dépôt**.
 - Mainnet : **aucun contrat DustEthic audité ou recommandé en production**.
-- Priorité actuelle : **restaurer l'ADN et le standard avant de reprendre le prototype technique**.
+- Priorité actuelle : **revoir le profil wallet v0.1, ses schémas et ses cas d’échec avant toute intégration réseau**.
 
 ## Documents principaux
 
 - [ADN DustEthic](ADN.md)
 - [Standard DustEthic](STANDARD.md)
 - [Feuille de route](ROADMAP.md)
+- [Profil wallet v0.1](WALLET-INTEGRATION-PROFILE.md) — [English](WALLET-INTEGRATION-PROFILE.en.md)
+- [Exemples fictifs](examples/wallet-profile-v0.1.json)
 - [Veille technique](TECHNICAL-WATCH.md)
 - [Communauté et Discord](COMMUNITY.md)
 - [Identité visuelle](BRAND.md)
@@ -76,3 +79,4 @@ Chemin : [archives/](archives/)
 DustEthic publie une spécification ouverte. Selon la juridiction et l'architecture retenue, un opérateur d'agrégation, un relayeur, un wallet ou une ONG peut relever de règles applicables aux paiements, dons, actifs numériques, fiscalité ou intermédiaires. Toute expérimentation réelle doit être validée par des conseils qualifiés avant lancement.
 
 > Chaque grain compte, seulement si la preuve tient.
+

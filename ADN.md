@@ -1,5 +1,7 @@
 # ADN DustEthic - référence de reprise
 
+**Mise à jour du 03.10.2026 :** lire le [Wallet Profile v0.1](WALLET-INTEGRATION-PROFILE.md) pour le parcours ZERO-OR-WAIT. Les mécanismes gas de juin restent historiques ; la conversion de secours n’est pas un fallback du profil.
+
 Date : 2026-06-14
 Statut : document de reprise, Phase 0, non final, non audité.
 
@@ -63,3 +65,9 @@ La répartition se fait dans l'actif donné. Les équivalents CHF, EUR ou USD pe
 DustEthic ne collecte pas les dons. DustEthic définit la règle du jeu pour que des dusts crypto puissent devenir des dons ONG vérifiables, avec consentement clair, frais visibles et preuve publique.
 
 Chaque grain compte, seulement si la preuve tient.
+
+## Clarification du 03.10.2026 — parcours wallet
+
+Le [profil wallet v0.1](WALLET-INTEGRATION-PROFILE.md) formalise ZERO-OR-WAIT : aucun paiement utilisateur supplémentaire ; sans sponsor suffisant, l'intention attend ou expire. Le profil de sponsoring externe ne rembourse pas le gas sur le don. Les déductions éventuelles du lot restent visibles et bornées avant consentement.
+
+Les paramètres gas de juin ci-dessus restent historiques. Leur conversion de secours n'est pas un fallback du profil wallet : un sponsor absent ne déclenche ni swap, ni bridge, ni demande de paiement. Les trois adaptateurs proposés ne sont pas implémentés. La règle crypto, les clés chez l'utilisateur et l'absence de caisse ou de token DustEthic sont conservées.
