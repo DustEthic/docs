@@ -1,5 +1,7 @@
 # Standard DustEthic - brouillon de reprise
 
+**Mise à jour du 03.10.2026 :** lire le [Wallet Profile v0.1](WALLET-INTEGRATION-PROFILE.md) pour le parcours ZERO-OR-WAIT. Les mécanismes gas de juin restent historiques ; la conversion de secours n’est pas un fallback du profil.
+
 Date : 2026-06-14  
 Statut : **draft**, Phase 0, non audité, non final, non utilisable en production.
 
@@ -177,3 +179,15 @@ DustEthic ne doit pas devenir :
 - une solution qui masque les frais blockchain ;
 - une dépendance à un acteur unique ;
 - une boîte noire qui capte la valeur au nom du bien commun.
+
+## Extension proposée au 03.10.2026 — Wallet Profile v0.1
+
+Lire [WALLET-INTEGRATION-PROFILE.md](WALLET-INTEGRATION-PROFILE.md) pour les états, préconditions et cas de validation. Cette extension est un brouillon de Phase 0.
+
+`user_network_fee = 0` et `additional_user_payment = 0` sont obligatoires dans le parcours proposé. Tous les coûts préalables, annexes et d'échec doivent être couverts ; sinon WAIT ou refus. Le sponsoring externe exige aussi `gas_reimbursed_from_donation = 0`. Les commissions ou réserves de lot éventuelles sont explicites, plafonnées, acceptées et sans débit hors du montant signé.
+
+La formule historique reste lisible, mais son terme « gas remboursé » vaut zéro dans ce profil. Une avance financée par les dons ne doit pas être appelée sponsoring externe. La conversion de secours du modèle gas v0.2 historique n'est pas utilisée dans ZERO-OR-WAIT.
+
+L'intention commune ne remplace pas les payloads de signature natifs. L'adaptateur doit faire respecter bénéficiaire, réseau, montant, expiration et absence de frais utilisateur. La preuve distingue statut réel, frais utilisateur, payeur effectif, coût natif du sponsor et déductions dans l'actif donné. Les montants d'actifs différents ne sont pas additionnés.
+
+Les premiers chemins à qualifier sont EVM wallet/paymaster, EVM avec autorisation de token compatible et Solana fee payer. Aucun réseau, wallet ou token n'est déclaré intégré à ce stade.

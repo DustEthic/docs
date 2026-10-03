@@ -1,0 +1,145 @@
+{
+  "kind": "fictional_examples_not_signed_test_vectors",
+  "cases": [
+    {
+      "profile_version": "0.1",
+      "standard_version": "draft-2026-10-03",
+      "status": "simulation_only",
+      "adapter_id": "evm-wallet-paymaster",
+      "network": "EVM test fixture",
+      "asset": {
+        "symbol": "USDC",
+        "identifier": null,
+        "decimals": 6
+      },
+      "beneficiary": {
+        "name": "Fictional NGO A",
+        "recipient": null
+      },
+      "amounts_atomic": {
+        "gross": "18000000",
+        "gas_reimbursed_from_donation": "0",
+        "relayer_commission": "900000",
+        "technical_reserve": "0",
+        "ngo_net": "17100000"
+      },
+      "fees": {
+        "user_network_fee": "0",
+        "additional_user_payment": "0",
+        "sponsor": {
+          "name": "Fictional sponsor",
+          "network_asset": "ETH",
+          "funding": "external",
+          "network_fee": "0.00024"
+        }
+      },
+      "public_verification": {
+        "transaction_reference": null,
+        "finality": "not_executed"
+      },
+      "note": "Fictional arithmetic fixture. No real token address, wallet support or network fee estimate."
+    },
+    {
+      "profile_version": "0.1",
+      "standard_version": "draft-2026-10-03",
+      "status": "simulation_only",
+      "adapter_id": "evm-token-authorization",
+      "network": "EVM test fixture",
+      "asset": {
+        "symbol": "USDC",
+        "identifier": null,
+        "decimals": 6
+      },
+      "beneficiary": {
+        "name": "Fictional NGO A",
+        "recipient": null
+      },
+      "amounts_atomic": {
+        "gross": "18000000",
+        "gas_reimbursed_from_donation": "0",
+        "relayer_commission": "900000",
+        "technical_reserve": "0",
+        "ngo_net": "17100000"
+      },
+      "fees": {
+        "user_network_fee": "0",
+        "additional_user_payment": "0",
+        "sponsor": {
+          "name": "Fictional sponsor",
+          "network_asset": "ETH",
+          "funding": "external",
+          "network_fee": "0.00024"
+        }
+      },
+      "public_verification": {
+        "transaction_reference": null,
+        "finality": "not_executed"
+      },
+      "note": "Fictional arithmetic fixture. No real token address, wallet support or network fee estimate."
+    },
+    {
+      "profile_version": "0.1",
+      "standard_version": "draft-2026-10-03",
+      "status": "simulation_only",
+      "adapter_id": "solana-fee-payer",
+      "network": "Solana test fixture",
+      "asset": {
+        "symbol": "USDC",
+        "identifier": null,
+        "decimals": 6
+      },
+      "beneficiary": {
+        "name": "Fictional NGO A",
+        "recipient": null
+      },
+      "amounts_atomic": {
+        "gross": "18000000",
+        "gas_reimbursed_from_donation": "0",
+        "relayer_commission": "900000",
+        "technical_reserve": "0",
+        "ngo_net": "17100000"
+      },
+      "fees": {
+        "user_network_fee": "0",
+        "additional_user_payment": "0",
+        "sponsor": {
+          "name": "Fictional sponsor",
+          "network_asset": "SOL",
+          "funding": "external",
+          "network_fee": "0.000005"
+        }
+      },
+      "public_verification": {
+        "transaction_reference": null,
+        "finality": "not_executed"
+      },
+      "note": "Fictional arithmetic fixture. No real token address, wallet support or network fee estimate."
+    }
+  ],
+  "failure_cases": [
+    {
+      "condition": "sponsor_missing",
+      "expected_status": "WAIT",
+      "expected_user_debit": "0",
+      "transaction_reference": null
+    },
+    {
+      "condition": "sponsor_expired",
+      "expected_status": "WAIT",
+      "expected_user_debit": "0",
+      "transaction_reference": null
+    },
+    {
+      "condition": "sponsor_rejected",
+      "expected_status": "WAIT",
+      "expected_user_debit": "0",
+      "transaction_reference": null
+    },
+    {
+      "condition": "sponsor_budget_insufficient",
+      "expected_status": "WAIT",
+      "expected_user_debit": "0",
+      "transaction_reference": null
+    }
+  ]
+}

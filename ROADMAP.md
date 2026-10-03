@@ -1,5 +1,7 @@
 # Feuille de route DustEthic
 
+**Mise à jour du 03.10.2026 :** lire le [Wallet Profile v0.1](WALLET-INTEGRATION-PROFILE.md) pour le parcours ZERO-OR-WAIT. Les mécanismes gas de juin restent historiques ; la conversion de secours n’est pas un fallback du profil.
+
 Date : 2026-06-14  
 Statut : feuille de route de reprise, Phase 0.
 
@@ -134,3 +136,13 @@ Conditions minimales :
 - déploiement mainnet sans audit ;
 - automatisation qui masque les signatures ou les frais ;
 - reprise du prototype wallet avant réalignement du standard.
+
+## Chantier ciblé ajouté le 03.10.2026 — Wallet Integration Profile v0.1
+
+Ce chantier complète Phase 0B et Phase 0C. Il ne lance pas un wallet ni une collecte.
+
+Préparé : proposition FR/EN de profil, veille officielle datée, exemples JSON fictifs et démonstration visuelle ZERO-OR-WAIT.
+
+À faire : revue du profil, JSON Schemas et vecteurs de test signés, qualification EVM wallet/paymaster, EVM autorisation et Solana fee payer, preuves natives, puis Wallet Kit minimal. Les adaptateurs, le kit et le registre ouvert de sponsors restent proposés.
+
+Critère de sortie : les trois chemins démontrent un don correctement autorisé, une réception vérifiable et aucun frais utilisateur, y compris en cas d'échec ou de sponsor absent. Une enveloppe commune ne suffit pas sans preuves propres à chaque réseau.
